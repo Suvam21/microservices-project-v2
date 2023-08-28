@@ -1,18 +1,20 @@
 package com.mpv2.userMicroservice.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "micro-users")
 public class User {
@@ -29,6 +31,9 @@ public class User {
 	
 	@Column(name = "ABOUT")
 	private String about;
+	
+	@Transient
+	private List<Ratings> ratings =  new ArrayList<>();
 	
 	
 	

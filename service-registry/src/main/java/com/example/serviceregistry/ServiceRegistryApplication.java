@@ -1,15 +1,13 @@
-package com.mpv2.userMicroservice;
+package com.example.serviceregistry;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserMicroserviceApplication {
+public class ServiceRegistryApplication {
 
-	
 	public static void main(String[] args) {
-		SpringApplication.run(UserMicroserviceApplication.class, args);
-
-	
+		SpringApplication.run(ServiceRegistryApplication.class, args);
 	}
 
 }
