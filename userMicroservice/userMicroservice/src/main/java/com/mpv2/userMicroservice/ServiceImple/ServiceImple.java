@@ -1,9 +1,7 @@
 package com.mpv2.userMicroservice.ServiceImple;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -49,13 +47,13 @@ public class ServiceImple implements UserService {
 		User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user Not found with this id"+ userId));
 	   //fetch rating of the above user from rating service
 	   //http://localhost:8081/ratings/users/0314c0b7-78f9-4abc-84d4-06040acf166a
-	   Ratings[] RatingOfUser = restTemplate.getForObject("http://localhost:8084/ratings/users/"+user.getUserId(), Ratings[].class);
+	   Ratings[] RatingOfUser = restTemplate.getForObject("http://rating-service/ratings/users/"+user.getUserId(), Ratings[].class);
 	   logger.info("{}",RatingOfUser);
 	   List<Ratings> ratings = Arrays.stream(RatingOfUser).toList();
 	   
 	   List<Ratings> ratingList = ratings.stream().map(Rating->{
 		 //api calling hotel service to get the hotel
-	   ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://localhost:8083/hotels/"+Rating.getHotelId(),Hotel.class);
+	   ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://hotel-service/hotels/"+Rating.getHotelId(),Hotel.class);
 	   Hotel hotel = forEntity.getBody();
 	   logger.info("response status code{}",forEntity.getStatusCode());
 	   

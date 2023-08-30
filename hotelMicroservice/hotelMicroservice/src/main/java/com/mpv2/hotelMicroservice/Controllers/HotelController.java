@@ -23,7 +23,6 @@ public class HotelController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HotelController.class);
 
-	
 	@Autowired
 	private HotelService hotelService;
 
