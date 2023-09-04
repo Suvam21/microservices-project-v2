@@ -20,26 +20,24 @@ import com.mpv2.userMicroservice.Service.UserService;
 @RequestMapping("/users")
 public class UserController {
     
-    //Logger Statement
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
 
-    //Create a user
     @PostMapping("/adduser")
     public User createUser(@RequestBody User user){
         return userService.saveUser(user);
+    
     }
 
-    //Get all user
     @GetMapping
     public List<User> getUser(){
         LOGGER.info("Got all users");
         return userService.getAllUser();
+   
     }
 
-    //get the single user
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") String userId){
         LOGGER.info("User found at ID: " + userId);

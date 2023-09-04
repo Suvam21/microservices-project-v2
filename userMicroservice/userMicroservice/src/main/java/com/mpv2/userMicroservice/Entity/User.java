@@ -3,11 +3,11 @@ package com.mpv2.userMicroservice.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +32,7 @@ public class User {
 	@Column(name = "ABOUT")
 	private String about;
 	
-	@Transient
+	@javax.persistence.Transient
 	private List<Ratings> ratings =  new ArrayList<>();
 	
 	
