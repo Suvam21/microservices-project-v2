@@ -27,17 +27,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
- 
-
-      - name: Authentication in AWS
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: AKIAZDS36EYFX2JFY6WU
-          aws-secret-access-key: URsywGwkq6JXwPVqeQCw+s0Qz6QyYPZI5OmLPFaG
-          aws-region: ap-south-1
-
- 
-
       - name: Deploying in ECS
         run: |
           # Replace the following with your ECS deployment script or AWS CLI commands
