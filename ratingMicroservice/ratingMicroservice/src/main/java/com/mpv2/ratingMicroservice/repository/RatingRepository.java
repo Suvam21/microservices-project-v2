@@ -11,6 +11,4 @@ public interface RatingRepository extends JpaRepository<Rating, String> {
     public List<Rating> findByUserId(String userId);
 
     public List<Rating> findByHotelId(String hotelId);
-
-
 }
