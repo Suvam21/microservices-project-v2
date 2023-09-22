@@ -1,39 +1,35 @@
+name: Backend CI/CD Pipeline
+
 on:
   push:
     branches:
-      - main
-
- 
+      - main #branch name
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
- 
-
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
- 
-
-      - name: Setting up Java (JDK 20)
+      - name: Set up Java with Maven
         uses: actions/setup-java@v2
         with:
           java-version: 20
-          check-latest: true
 
- 
+      - name: Building Backend with Maven
+        run: mvn clean package
 
-      - name: Build with Maven
-        run: mvn clean install
-
-      - name: Deploying in ECS
+      - name: Upload JAR to S3
         run: |
-          # Replace the following with your ECS deployment script or AWS CLI commands
-          # Example:
-          # aws ecs update-service --cluster proj --service YourServiceName --force-new-deployment
-          echo "Deployment command here"
+          aws s3 cp target/your-backend-app.jar s3://microservice-jar-bucket/Backend/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1  # Change to your AWS region
+
+
 
 # # This is a basic workflow that is manually triggered
 
